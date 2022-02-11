@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+      .elem {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            background-color: #333;
+            color: white;
+            margin: 7px;
+            border-radius: 0.25em;
+            cursor: pointer;
+        }
+        .elem:hover{
+            background-color: black;
+        }
+        
+        .corpo {
+            display: grid;
+            grid-template-columns: repeat(4, 25%);
+            grid-template-rows: repeat(7, 14.28%) ;
+
+            width: 500px;
+            height: 600px;
+            padding: 15px;
+            background-color: black;
+            border-radius: 1em;
+        }
+        
+        .nome {
+            background-color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            grid-column-start: 1;
+            grid-column-end: 5;
+            font-size: 3.5em;
+        }
+
+        #displ {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            grid-column-start: 1;
+            grid-column-end: 5;
+            
+            background-color: white;
+            color: black;
+            font-size: 30px;
+            margin: 7px;
+            border-radius: 0.25em;
+        }
+
+        .igual {
+            grid-column-start: 4;
+            grid-row-start: 6;
+            grid-row-end: 8;
+        }
+
+        .zero {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+</style>
+<body>
+
+    <div class="corpo">
+        <div class="elem nome">Calculadora</div>
+        <p id="displ"></p>
+        <div class="elem"  onclick="limpar()">C</div>
+        <div class="elem" onclick="back()"><</div>
+        <div class="elem" onclick="insert('/')">/</div>
+        <div class="elem" onclick="insert('*')">X</div>
+        <div class="elem" onclick="insert('7')">7</div>
+        <div class="elem" onclick="insert('8')">8</div>
+        <div class="elem" onclick="insert('9')">9</div>
+        <div class="elem" onclick="insert('-')">-</div>
+        <div class="elem"onclick="insert('4')">4</div>
+        <div class="elem"onclick="insert('5')">5</div>
+        <div class="elem"onclick="insert('6')">6</div>
+        <div class="elem" onclick="insert('+')">+</div>
+        <div class="elem" onclick="insert('1')">1</div>
+        <div class="elem" onclick="insert('2')">2</div>
+        <div class="elem" onclick="insert('3')">3</div>
+        <div class="elem igual" onclick="calcular()">=</div>
+        <div class="elem zero" onclick="insert('0')">0</div>
+        <div class="elem" onclick="insert('.')">.</div>
+    </div>
+    
+</body>
+<script>
+    function insert(num){
+        var numero = document.getElementById('displ').innerHTML
+        document.getElementById('displ').innerHTML = numero + num
+    }
+
+    function limpar(){
+        document.getElementById('displ').innerHTML = ""
+    }
+    
+    function back(){
+        var resultado = document.getElementById('displ').innerHTML
+        document.getElementById('displ').innerHTML = resultado.substring(0, resultado.length -1)
+    }
+    
+    function calcular(){
+        var resultado = document.getElementById('displ').innerHTML
+        if (resultado) {
+            document.getElementById('displ').innerHTML = eval(resultado)
+        }else{
+            document.getElementById('displ').innerHTML = "Nada para calcular"
+        }
+    }
+</script>
+</html>
